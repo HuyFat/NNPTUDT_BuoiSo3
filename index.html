@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+        #searchInput {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button, select {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover, select:hover {
+            background-color: #2980b9;
+        }
+        #pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #pagination button {
+            margin: 0 5px;
+            padding: 8px 12px;
+            background-color: #95a5a6;
+        }
+        #pagination button:hover {
+            background-color: #7f8c8d;
+        }
+        #pagination span {
+            margin: 0 5px;
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            cursor: pointer;
+            position: relative;
+        }
+        th:hover {
+            background-color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        tr:hover {
+            background-color: #f1c40f;
+            color: #000000;
+        }
+        th:nth-child(4), td:nth-child(4) {
+            display: none;
+        }
+        img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #searchInput {
+                min-width: auto;
+            }
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+            img {
+                max-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm theo title..." oninput="filterProducts()">
+            <button onclick="sortProducts('title')">Sắp xếp theo Tên</button>
+            <button onclick="sortProducts('price')">Sắp xếp theo Giá</button>
+            <label for="itemsPerPage">Số sản phẩm mỗi trang:</label>
+            <select id="itemsPerPage" onchange="changeItemsPerPage()">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+        <div id="pagination"></div>
+        <div id="dashboard"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
